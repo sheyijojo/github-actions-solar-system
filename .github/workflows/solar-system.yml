@@ -48,10 +48,11 @@ jobs:
           with:
             node-version: 20
         - name: Cache NPM dependencie
-          uses: actions/cache@latest
+          uses: actions/cache@4
           with:
             path: ~/.npm
-            key: ${{ runner.os }}-node-{hash}
+            key: '${{ runner.os }}-node-modules-${{ hashFiles("package-lock.json") }}'
+
 
         - name: Install Dependencies
           run: npm install  
