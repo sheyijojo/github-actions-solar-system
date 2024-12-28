@@ -48,7 +48,7 @@ jobs:
           with:
             node-version: 20
         - name: Cache NPM dependencie
-          uses: actions/cache@4
+          uses: actions/cache@v4
           with:
             path: ~/.npm
             key: ${{ runner.os }}-node-modules-${{ hashFiles('package-lock.json') }}
