@@ -51,7 +51,7 @@ jobs:
           uses: actions/cache@4
           with:
             path: ~/.npm
-            key: '${{ runner.os }}-node-modules-${{ hashFiles("package-lock.json") }}'
+            key: ${{ runner.os }}-node-modules-${{ hashFiles("package-lock.json") }}
 
 
         - name: Install Dependencies
