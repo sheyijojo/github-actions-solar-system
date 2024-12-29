@@ -47,7 +47,7 @@ jobs:
           uses: actions/setup-node@v4
           with:
             node-version: 20
-        - name: Cache NPM dependencie
+        - name: Cache NPM dependencies
           uses: actions/cache@v4
           with:
             path: ~/.npm
