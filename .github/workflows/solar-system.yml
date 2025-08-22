@@ -74,3 +74,31 @@
          context: .
          push: true
          tags: ghcr.io/${{ steps.lower.outputs.repo }}/solar-system:${{ github.sha }}
+
+
+    dev-deploy:
+      runs-on: ubuntu-latest
+      environment: development
+      needs:
+       - docker      
+      steps:   
+      - name: Deploy to Development Environment
+        uses: actions/checkout@v4
+
+      - name:  Set Up Helm
+        uses: helm/kind-action@v1
+      
+      - name: helm deployment 
+        run: |
+            sleep 60
+            kubectl -n kube-system get pod
+            set +e
+            REPO_OWNER_LC="${GITHUB_REPOSITORY_OWNER,,}"
+            kubectl run solar --image ghcr.io/${REPO_OWNER_LC}/solar-system:${{ github.sha }} \
+              --env MONGO_URI=${{ env.MONGO_URI}} \
+              --env MONGO_USERNAME=${{ env.MONGO_USERNAME}} \
+              --env MONGO_PASSWORD=${{ env.MONGO_PASSWORD}}
+            set -e
+            echo "kubectl returned $?"
+            kubectl -n default get pod
+            sleep 10
