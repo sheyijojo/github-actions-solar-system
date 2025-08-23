@@ -83,9 +83,6 @@
       needs:
        - docker      
       steps:   
-      - name: Deploy to Development Environment
-        uses: actions/checkout@v4
-
       - name: Install cluster 
         uses: helm/kind-action@v1
       - run: |
