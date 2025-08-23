@@ -98,3 +98,12 @@
             echo "kubectl returned $?"
             kubectl -n default get pod
             sleep 10
+    intregrating-testing:
+      runs-on: ubuntu-latest
+      needs:
+        - dev-deploy    
+      steps:   
+      - name: Install cluster 
+        uses: ./.github/workflows/reusable-workflow.yml
+        with:
+          ingress-url: ${{ needs.dev-deploy.outputs.APP_INGRESS_URL }}
