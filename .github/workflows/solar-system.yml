@@ -86,7 +86,7 @@
       - name: Deploy to Development Environment
         uses: actions/checkout@v4
 
-      - name:  Set Up Helm
+      - name: Install cluster 
         uses: helm/kind-action@v1
       - run: |
             sleep 60
