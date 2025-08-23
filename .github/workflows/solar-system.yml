@@ -78,7 +78,8 @@
 
     dev-deploy:
       runs-on: ubuntu-latest
-      environment: development
+      environment: 
+        name: development
       needs:
        - docker      
       steps:   
